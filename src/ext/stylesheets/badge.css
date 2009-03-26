@@ -50,16 +50,23 @@
   vertical-align: middle;
 }
 
+#github-badge .repos .private {
+  border: 1px solid #F7CA75;
+  background-color:#FFFEEB;
+}
+
 #github-badge .repos .public {
   border: 1px solid #d8d8d8;
   background-color: #f0f0f0;
 }
 
+#github-badge .repos .public a,
 #github-badge .repos .public a {
   background-color: #f0f0f0;
 }
 
-#github-badge .repos .public .description {
+#github-badge .repos .public .description,
+#github-badge .repos .private .description {
   margin-left: 18px;
 }
 

@@ -14,7 +14,7 @@ GitHubBadge.buildUserBadge = function(username) {
 GitHubBadge.loadUserInfo = function(data) {
   (function($){
     var template = $.template(
-      "<li class='public clickable'>"
+      "<li class='${visibility} clickable'>"
       +  "<img src='http://github.com/images/icons/${visibility}.png' alt='${visibility}'>"
       +  "<strong><a href='${url}'>${name}</a></strong>"
       +  "<div class='description'>${description}</div>"
