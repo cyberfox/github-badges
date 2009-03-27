@@ -39,8 +39,8 @@ GitHubBadge.buildUserBadge = function(username) {
 GitHubBadge.loadUserInfo = function(data) {
   (function($){
     var template = $.template(
-      "<li class='public clickable'>"
-      +  "<img src='http://github.com/images/icons/public.png' alt='public'>"
+      "<li class='${visibility} clickable'>"
+      +  "<img src='http://github.com/images/icons/${visibility}.png' alt='${visibility}'>"
       +  "<strong><a href='${url}'>${name}</a></strong>"
       +  "<div class='description'>${description}</div>"
       +"</li>"
@@ -59,7 +59,10 @@ GitHubBadge.loadUserInfo = function(data) {
       return data.user.repositories.indexOf(repo2) - data.user.repositories.indexOf(repo1);
     })
     $.each(orderedRepos, function(index) {
-      list.append(template, this);
+      if (!("GITHUB_HIDE_SELF_PRIVATE" in window && GITHUB_HIDE_SELF_PRIVATE && this['private'])) {
+        this['visibility'] = this['private'] ? 'private' : 'public';
+	list.append(template, this);
+      }
     });
     var showLimit = window.GITHUB_LIST_LENGTH || 10;
 
