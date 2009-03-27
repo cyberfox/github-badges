@@ -34,8 +34,10 @@ GitHubBadge.loadUserInfo = function(data) {
       return data.user.repositories.indexOf(repo2) - data.user.repositories.indexOf(repo1);
     })
     $.each(orderedRepos, function(index) {
-      this['visibility'] = this['private'] ? 'private' : 'public';
-      list.append(template, this);
+      if (!("GITHUB_HIDE_SELF_PRIVATE" in window && GITHUB_HIDE_SELF_PRIVATE && this['private'])) {
+        this['visibility'] = this['private'] ? 'private' : 'public';
+	list.append(template, this);
+      }
     });
     var showLimit = window.GITHUB_LIST_LENGTH || 10;
     
